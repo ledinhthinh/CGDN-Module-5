@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-msedge",
+            "request": "launch",
+            "name": "Open index.html",
+            "file": "d:\\CodeGym\\CGDN-Module-5\\1.UX,UI\\bai_tap\\codegym-career\\src\\index.html"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: start",
+            "request": "launch",
+            "command": "npm run start",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: ng s --o",
+            "request": "launch",
+            "command": "npm run ng s --o",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "node-terminal",
+            "name": "Run Script: ng",
+            "request": "launch",
+            "command": "npm run ng",
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
