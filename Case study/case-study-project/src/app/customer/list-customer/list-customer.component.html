@@ -1,0 +1,86 @@
+<app-header></app-header>
+<div style="position: relative; top: 135px">
+  <app-body-left></app-body-left> 
+  <div class="card" style="width: 81%; margin-left: 18rem ; height: 880px">
+    <div style="text-align: center;">
+        <h1>Customer Management</h1>
+    </div>
+    <div align="center">
+        <h2>List of Customer</h2>
+        <table class="table-sm table-striped table-bordered" id="tableCustomer">
+            <thead>
+            <tr class="table-active">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Gender</th>
+                <th>Id card</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Customer type</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer:${cusList}">
+                <td th:text="${customer.customerId}"></td>
+                <td th:text="${customer.customerName}"></td>
+                <td th:text="${customer.customerBirthday}"></td>
+                <td th:text="${customer.customerGender}"></td>
+                <td th:text="${customer.customerIdCard}"></td>
+                <td th:text="${customer.customerPhone}"></td>
+                <td th:text="${customer.customerEmail}"></td>
+                <td th:text="${customer.customerAddress}"></td>
+                <td th:text="${customer.customerType.customerTypeName}"></td>
+                <td>
+                    <a th:href="@{/customer/edit/{id}(id = ${customer.customerId})}"
+                       class="btn btn-outline-info">Edit</a>
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                            data-target="#exampleModal">
+                        Delete
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete 
+                                    <!-- <a th:text="${customer.customerId}"/> ? -->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <a type="button" th:href="@{/customer/delete/{id}(id = ${customer.customerId})}"
+                                       class="btn btn-outline-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <a class="btn btn-sm btn-outline-dark"
+               th:href="@{'/customer/list'(page=${cusList.number - 1},keyword = ${nameSearchAfter})}"
+               th:if="${cusList.hasPrevious()}">Previous</a>
+            <span th:text="${cusList.number + 1}"></span>/<span th:text="${cusList.totalPages}"></span>
+            <a class="btn btn-sm btn-outline-dark"
+               th:href="@{'/customer/list'(page=${cusList.number + 1},keyword = ${nameSearchAfter})}"
+               th:if="${cusList.hasNext()}">Next</a>
+        </div>
+        <br>
+        <a th:href="@{/customer/create}" class="btn btn-outline-success btn-sm w-25">Add New Customer</a>
+    </div>
+
+</div>
+  <app-footer></app-footer>
+</div>
