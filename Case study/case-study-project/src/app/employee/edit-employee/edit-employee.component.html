@@ -1,0 +1,104 @@
+<div class="card" style="width: 81%; margin-left: 18rem ; height: 880px">
+    <div style="text-align: center">
+        <h1>Employee Management</h1>
+
+    </div>
+    <div align="center">
+        <form method="post" action="/employee/update">
+            <caption>
+                <h2>Edit Employee</h2>
+            </caption>
+            <table class="table-sm" th:object="${employee}">
+                <tr>
+                    <th>Employee ID:</th>
+                    <td>
+                        <input type="hidden" th:field="*{employeeId}" th:text="*{employeeId}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Name:</th>
+                    <td>
+                        <input type="text" th:field="*{employeeName}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Birthday:</th>
+                    <td>
+                        <input type="date " th:field="*{employeeBirthday}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Id card:</th>
+                    <td>
+                        <input type="text" th:field="*{employeeIdCard}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Salary:</th>
+                    <td>
+                        <input type="text" th:field="*{employeeSalary}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Phone:</th>
+                    <td>
+                        <input type="text" th:field="*{employeePhone}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Email:</th>
+                    <td>
+                        <input type="text" th:field="*{employeeEmail}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Employee Address:</th>
+                    <td>
+                        <input type="text" th:field="*{employeeAddress}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Position:</th>
+                    <td>
+                        <select th:field="*{position.positionId}">
+                            <option th:each="p:${position}"
+                                    th:value="${p.positionId}"
+                                    th:text="${p.positionName}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Education Degree:</th>
+                    <td>
+                        <select th:field="*{educationDegree.educationDegreeId}">
+                            <option th:each="e:${educationDegree}"
+                                    th:value="${e.educationDegreeId}"
+                                    th:text="${e.educationDegreeName}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Division:</th>
+                    <td>
+                        <select th:field="*{division.divisionId}">
+                            <option th:each="d:${division}"
+                                    th:value="${d.divisionId}"
+                                    th:text="${d.divisionName}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <a type="button" th:href="@{/employee/list}"
+                           class="btn btn-outline-secondary">Close</a>
+                        <input type="submit" value="Save" class="btn btn-outline-success"/>
+
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>

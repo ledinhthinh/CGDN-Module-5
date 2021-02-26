@@ -1,1 +1,137 @@
-<p>create-customer works!</p>
+<div class="card" style="width: 81%; margin-left: 18rem; height: 880px">
+  <div style="text-align: center">
+    <h1>Customer Management</h1>
+  </div>
+  <div align="center">
+    <form method="post">
+      <h2>Add New Customer</h2>
+      <table class="table-sm">
+        <tr>
+          <th>Customer ID:</th>
+          <td>
+            <input
+              placeholder="KH-0000,KH-1111,..."
+              type="text"
+              th:field="*{customer.customerId}"
+            />
+            <p
+              style="color: red"
+              th:if="${#fields.hasErrors('customer.customerId')}"
+              th:errors="*{customer.customerId}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Name:</th>
+          <td>
+            <input
+              placeholder="Nguyễn Văn A,..."
+              type="text"
+              th:field="*{customer.customerName}"
+            />
+            <p
+              style="color: #ff0000"
+              th:if="${#fields.hasErrors('customer.customerName')}"
+              th:errors="*{customer.customerName}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Birthday:</th>
+          <td>
+            <input type="date" th:field="*{customer.customerBirthday}" />
+            <p
+              style="color: red"
+              th:if="${#fields.hasErrors('customer.customerBirthday')}"
+              th:errors="*{customer.customerBirthday}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Gender:</th>
+          <td>
+            <select name="customerGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Orther">Orther</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Id Card:</th>
+          <td>
+            <input
+              placeholder="000000000,111111111,..."
+              type="text"
+              th:field="*{customer.customerIdCard}"
+            />
+            <p
+              style="color: red"
+              th:if="${#fields.hasErrors('customer.customerIdCard')}"
+              th:errors="*{customer.customerIdCard}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Phone:</th>
+          <td>
+            <input
+              placeholder="0123456789,..."
+              type="text"
+              th:field="*{customer.customerPhone}"
+            />
+            <p
+              style="color: red"
+              th:if="${#fields.hasErrors('customer.customerPhone')}"
+              th:errors="*{customer.customerPhone}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Email:</th>
+          <td>
+            <input
+              placeholder="abc@abc.abc,..."
+              type="text"
+              th:field="*{customer.customerEmail}"
+            />
+            <p
+              style="color: red"
+              th:if="${#fields.hasErrors('customer.customerEmail')}"
+              th:errors="*{customer.customerEmail}"
+            ></p>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Address:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerAddress}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Type Customer:</th>
+          <td>
+            <select th:field="*{customer.customerType.customerTypeId}">
+              <option
+                th:each="c:${customerTypes}"
+                th:value="${c.customerTypeId}"
+                th:text="${c.customerTypeName}"
+              ></option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <a
+              type="button"
+              th:href="@{/customer/list}"
+              class="btn btn-outline-secondary"
+              >Close</a
+            >
+            <input type="submit" value="Save" class="btn btn-outline-success" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

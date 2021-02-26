@@ -1,0 +1,123 @@
+<div class="card" style="width: 81%; margin-left: 18rem; height: 880px">
+  <div style="text-align: center">
+    <h1>Employee Management</h1>
+  </div>
+  <div align="center">
+    <h2>List of Employee</h2>
+    <table
+      id="tableEmployee"
+      class="table table-sm table-striped table-bordered"
+    >
+      <thead>
+        <tr class="table-active">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Birthday</th>
+          <th>Id card</th>
+          <th>Salary (Vnd)</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Position</th>
+          <th>Education Degree</th>
+          <th>Division</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="employee:${emList}">
+          <td th:text="${employee.employeeId}"></td>
+          <td th:text="${employee.employeeName}"></td>
+          <td th:text="${employee.employeeBirthday}"></td>
+          <td th:text="${employee.getEmployeeIdCard()}"></td>
+          <td th:text="${employee.employeeSalary}"></td>
+          <td th:text="${employee.employeePhone}"></td>
+          <td th:text="${employee.employeeEmail}"></td>
+          <td th:text="${employee.employeeAddress}"></td>
+          <td th:text="${employee.position.positionName}"></td>
+          <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+          <td th:text="${employee.division.divisionName}"></td>
+          <td>
+            <a
+              th:href="@{/employee/edit/{id}(id=${employee.employeeId})}"
+              class="btn btn-outline-info"
+              >Edit</a
+            >
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Delete
+            </button>
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete ?
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <a
+                      type="button"
+                      th:href="@{/employee/delete/{id}(id = ${employee.employeeId})}"
+                      class="btn btn-outline-danger"
+                      >Delete</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <a
+        class="btn btn-sm btn-outline-dark"
+        th:href="@{'/employee/list'(page=${emList.number - 1},keyword = ${nameSearchAfter})}"
+        th:if="${emList.hasPrevious()}"
+        >Previous</a
+      >
+      <span th:text="${emList.number + 1}"></span>/<span
+        th:text="${emList.totalPages}"
+      ></span>
+      <a
+        class="btn btn-sm btn-outline-dark"
+        th:href="@{'/employee/list'(page=${emList.number + 1},keyword = ${nameSearchAfter})}"
+        th:if="${emList.hasNext()}"
+        >Next</a
+      >
+    </div>
+    <br />
+    <a [routerLink]="['create']" class="btn btn-outline-success btn-sm w-25">
+      Add New Employee
+    </a>
+  </div>
+</div>

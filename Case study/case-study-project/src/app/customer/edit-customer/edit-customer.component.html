@@ -1,1 +1,93 @@
-<p>edit-customer works!</p>
+<div class="card" style="width: 81%; margin-left: 18rem; height: 880px">
+  <div style="text-align: center">
+    <h1>Customer Management</h1>
+  </div>
+  <div align="center">
+    <form method="post" action="/customer/update">
+      <caption>
+        <h2>Edit Customer</h2>
+      </caption>
+      <table class="table-sm">
+        <tr>
+          <th>Customer ID:</th>
+          <td>
+            <input
+              type="hidden"
+              th:field="*{customer.customerId}"
+              th:text="*{customer.customerId}"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Name:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerName}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Birthday:</th>
+          <td>
+            <input type="date" th:field="*{customer.customerBirthday}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Gender:</th>
+          <td>
+            <select name="customerGender" th:field="*{customer.customerGender}">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Orther">Orther</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Id Card:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerIdCard}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Phone:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerPhone}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Email:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerEmail}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Customer Address:</th>
+          <td>
+            <input type="text" th:field="*{customer.customerAddress}" />
+          </td>
+        </tr>
+        <tr>
+          <th>Type Customer:</th>
+          <td>
+            <select th:field="*{customer.customerType.customerTypeId}">
+              <option
+                th:each="c:${customerType}"
+                th:value="${c.customerTypeId}"
+                th:text="${c.customerTypeName}"
+              ></option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <a
+              type="button"
+              th:href="@{/customer/list}"
+              class="btn btn-outline-secondary"
+              >Close</a
+            >
+            <input type="submit" value="Save" class="btn btn-outline-success" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

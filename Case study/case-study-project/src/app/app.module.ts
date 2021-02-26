@@ -11,6 +11,11 @@ import { FooterComponent } from './footer/footer.component';
 import { ListCustomerComponent } from './customer/list-customer/list-customer.component';
 import { CreateCustomerComponent } from './customer/create-customer/create-customer.component';
 import { EditCustomerComponent } from './customer/edit-customer/edit-customer.component';
+import { RouterModule } from '@angular/router';
+import { FuramaRoutingModule } from './furama-routing.module';
+import { EditEmployeeComponent } from './employee/edit-employee/edit-employee.component';
+import { ListEmployeeComponent } from './employee/list-employee/list-employee.component';
+import { CreateEmployeeComponent } from './employee/create-employee/create-employee.component';
 
 
 @NgModule({
@@ -24,12 +29,17 @@ import { EditCustomerComponent } from './customer/edit-customer/edit-customer.co
     ListCustomerComponent,
     CreateCustomerComponent,
     EditCustomerComponent,
+    EditEmployeeComponent,
+    ListEmployeeComponent,
+    CreateEmployeeComponent,
 
     
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule,
+    FuramaRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
